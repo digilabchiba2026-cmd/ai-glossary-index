@@ -195,5 +195,27 @@
     "confidence": "high",
     "status": "draft",
     "collected_at": "2026-08-20T15:12:51.344Z"
+  },
+  {
+    "id": "ARC-08",
+    "category": "ARC",
+    "term": "Test-Time Compute Scaling",
+    "definition": "モデルの追加学習なしに、推論（inference）時により多くの計算リソースを割り当てることで出力精度を高めるパラダイム。OpenAIのo1やDeepSeek-R1が体現した「推論しながら考える」アプローチとして2025年に広く注目された。",
+    "source_url": "https://www.turingpost.com/p/testtimecompute",
+    "source_note": "Turing Post",
+    "confidence": "high",
+    "status": "draft",
+    "collected_at": "2026-08-20T15:21:54.725Z"
+  },
+  {
+    "id": "ARC-09",
+    "category": "ARC",
+    "term": "Model Distillation",
+    "definition": "大規模な「教師モデル」の知識・能力を小規模な「生徒モデル」に転移させる技術。2025年初頭にDeepSeekがこの手法で高性能な低コストモデルを公開したことで改めて注目が集まり、AI民主化の鍵技術として広く認識されるようになった。",
+    "source_url": "https://builtin.com/artificial-intelligence/model-distillation",
+    "source_note": "Built In",
+    "confidence": "high",
+    "status": "draft",
+    "collected_at": "2026-08-20T15:21:54.725Z"
   }
 ]
