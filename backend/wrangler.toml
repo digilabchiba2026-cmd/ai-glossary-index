@@ -1,0 +1,11 @@
+name = "ai-glossary-index-backend"
+main = "src/index.js"
+compatibility_date = "2024-11-01"
+
+# シークレット(値は `wrangler secret put <NAME>` で設定。ここには書かない):
+#   GITHUB_TOKEN          対象リポジトリへの書き込み権限を持つトークン(Contents + Pull requests)
+#   SLACK_SIGNING_SECRET  Slack Appの Signing Secret
+
+[vars]
+GITHUB_OWNER = "<owner>"
+GITHUB_REPO = "<repo>"

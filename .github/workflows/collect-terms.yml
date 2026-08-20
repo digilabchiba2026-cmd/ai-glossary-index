@@ -1,0 +1,100 @@
+name: Collect AI Glossary Candidates
+
+# 毎週月曜 09:00 JST(=月曜 00:00 UTC)に自動実行。
+# 手動実行(workflow_dispatch)にも対応。
+on:
+  schedule:
+    - cron: '0 0 * * 1'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Collect new term candidates
+        id: collect
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: node scripts/collect-candidates.mjs
+
+      - name: Commit draft candidates to main
+        if: steps.collect.outputs.count > 0
+        run: |
+          git config user.name "glossary-bot"
+          git config user.email "glossary-bot@users.noreply.github.com"
+          git add data/terms.json
+          git commit -m "候補語句をdraftとして追記(${{ steps.collect.outputs.count }}件)"
+          git push
+
+      - name: Post candidates to Slack with approve/reject buttons
+        if: steps.collect.outputs.count > 0
+        uses: actions/github-script@v7
+        env:
+          CANDIDATES_JSON: ${{ steps.collect.outputs.candidates_json }}
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+          SLACK_CHANNEL_ID: ${{ secrets.SLACK_CHANNEL_ID }}
+        with:
+          script: |
+            const candidates = JSON.parse(process.env.CANDIDATES_JSON);
+            for (const c of candidates) {
+              const confidenceLabel = c.confidence === 'high' ? '信頼度: 高' : '信頼度: 要確認';
+              const blocks = [
+                {
+                  type: 'section',
+                  text: {
+                    type: 'mrkdwn',
+                    text: `*${c.id} ${c.term}* (${c.category}) ・ ${confidenceLabel}\n${c.definition}`,
+                  },
+                },
+                {
+                  type: 'actions',
+                  elements: [
+                    {
+                      type: 'button',
+                      text: { type: 'plain_text', text: '承認' },
+                      style: 'primary',
+                      action_id: 'approve_term',
+                      value: `approve:${c.id}`,
+                    },
+                    {
+                      type: 'button',
+                      text: { type: 'plain_text', text: '却下' },
+                      style: 'danger',
+                      action_id: 'reject_term',
+                      value: `reject:${c.id}`,
+                    },
+                  ],
+                },
+              ];
+              const res = await fetch('https://slack.com/api/chat.postMessage', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json; charset=utf-8',
+                  Authorization: `Bearer ${process.env.SLACK_BOT_TOKEN}`,
+                },
+                body: JSON.stringify({
+                  channel: process.env.SLACK_CHANNEL_ID,
+                  text: `新しい語句候補: ${c.term}`,
+                  blocks,
+                }),
+              });
+              const json = await res.json();
+              if (!json.ok) {
+                core.warning(`Slack投稿に失敗しました(${c.id}): ${json.error}`);
+              }
+            }
+
+      - name: No new candidates
+        if: steps.collect.outputs.count == 0
+        run: echo "新しい候補は見つかりませんでした。今回はコミット・通知をスキップします。"
