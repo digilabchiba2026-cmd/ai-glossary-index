@@ -1,31 +1,199 @@
 [
-  { "id": "ARC-01", "category": "ARC", "term": "LLM", "definition": "大量のテキストデータで訓練された、数十億〜数兆パラメータ規模の言語モデル。文章生成や質問応答など幅広いタスクをこなす。", "status": "published" },
-  { "id": "ARC-02", "category": "ARC", "term": "SLM", "definition": "LLMより小規模なパラメータ数で構成される言語モデル。省リソースでの推論やエッジデバイスでの実行に適する。", "status": "published" },
-  { "id": "ARC-03", "category": "ARC", "term": "VLM", "definition": "画像とテキストの両方を理解・生成できるマルチモーダルモデル。画像キャプション生成や視覚的質問応答に用いられる。", "status": "published" },
-  { "id": "ARC-04", "category": "ARC", "term": "MoE", "definition": "複数の専門化された小規模ネットワーク(エキスパート)を持ち、入力ごとに一部のみを活性化させるアーキテクチャ。計算効率を保ちながらモデル容量を拡大できる。", "status": "published" },
-  { "id": "ARC-05", "category": "ARC", "term": "Context Window", "definition": "モデルが一度に処理できるトークン数の上限。長いほど多くの文脈情報を保持しながら応答を生成できる。", "status": "published" },
-  { "id": "ARC-06", "category": "ARC", "term": "Reasoning Model", "definition": "回答前に段階的な思考過程(推論)を行うよう訓練されたモデル。複雑な数学問題やコーディングタスクでの精度向上を狙う。", "status": "published" },
-
-  { "id": "RAG-01", "category": "RAG", "term": "RAG", "definition": "外部知識ベースから関連情報を検索し、それを踏まえて回答を生成する手法。モデルの知識を最新かつ正確に保つ。", "status": "published" },
-  { "id": "RAG-02", "category": "RAG", "term": "Chunking", "definition": "長い文書を検索・埋め込みに適したサイズの断片(チャンク)に分割する前処理工程。", "status": "published" },
-  { "id": "RAG-03", "category": "RAG", "term": "Vector Database", "definition": "テキストなどをベクトル化(埋め込み)して格納し、類似度検索を高速に行うためのデータベース。", "status": "published" },
-  { "id": "RAG-04", "category": "RAG", "term": "Semantic Search", "definition": "キーワードの一致ではなく、意味的な近さに基づいて情報を検索する手法。", "status": "published" },
-  { "id": "RAG-05", "category": "RAG", "term": "GraphRAG", "definition": "知識をグラフ構造(エンティティと関係)として表現し、検索・推論に活用するRAGの発展形。", "status": "published" },
-
-  { "id": "AGT-01", "category": "AGT", "term": "AI Agent", "definition": "目標達成のために自律的に計画・判断・行動(ツール利用を含む)を行うAIシステム。", "status": "published" },
-  { "id": "AGT-02", "category": "AGT", "term": "Multi-Agent System", "definition": "複数のAIエージェントが協調・分業してタスクを遂行する仕組み。", "status": "published" },
-  { "id": "AGT-03", "category": "AGT", "term": "Function Calling / Tool Use", "definition": "モデルが外部の関数やAPI・ツールを呼び出して情報取得や操作を行う能力。", "status": "published" },
-  { "id": "AGT-04", "category": "AGT", "term": "MCP", "definition": "モデルと外部データソース・ツールを標準化された方法で接続するためのプロトコル(Model Context Protocol)。", "status": "published" },
-
-  { "id": "PMT-01", "category": "PMT", "term": "System Prompt", "definition": "モデルの振る舞いや役割をあらかじめ規定する、対話の冒頭に与える指示文。", "status": "published" },
-  { "id": "PMT-02", "category": "PMT", "term": "CoT", "definition": "回答に至るまでの思考過程を段階的に言語化させることで、推論精度を高めるプロンプト技法(Chain of Thought)。", "status": "published" },
-  { "id": "PMT-03", "category": "PMT", "term": "In-Context Learning", "definition": "追加の学習(パラメータ更新)なしに、プロンプト内の例示だけから新しいタスクのパターンを学習する能力。", "status": "published" },
-  { "id": "PMT-04", "category": "PMT", "term": "Fine-Tuning", "definition": "事前学習済みモデルを特定タスクやドメインのデータで追加学習し、性能を調整する手法。", "status": "published" },
-  { "id": "PMT-05", "category": "PMT", "term": "RLHF", "definition": "人間の評価・フィードバックを報酬信号として、モデルの応答を望ましい方向に強化学習する手法。", "status": "published" },
-
-  { "id": "GOV-01", "category": "GOV", "term": "Hallucination", "definition": "モデルが事実に基づかない、もっともらしい誤った情報を生成してしまう現象。", "status": "published" },
-  { "id": "GOV-02", "category": "GOV", "term": "Alignment", "definition": "モデルの振る舞いを人間の意図や価値観、安全性の基準に一致させる取り組み。", "status": "published" },
-  { "id": "GOV-03", "category": "GOV", "term": "Prompt Injection", "definition": "悪意ある入力によってモデルの本来の指示や制御を乗っ取ろうとする攻撃手法。", "status": "published" },
-  { "id": "GOV-04", "category": "GOV", "term": "Grounding", "definition": "モデルの出力を検証可能な事実や外部情報源に基づかせること。", "status": "published" },
-  { "id": "GOV-05", "category": "GOV", "term": "AI Governance", "definition": "AIの開発・運用に関する組織的なルール・体制・監督の枠組み。", "status": "published" }
+  {
+    "id": "ARC-01",
+    "category": "ARC",
+    "term": "LLM",
+    "definition": "大量のテキストデータで訓練された、数十億〜数兆パラメータ規模の言語モデル。文章生成や質問応答など幅広いタスクをこなす。",
+    "status": "published"
+  },
+  {
+    "id": "ARC-02",
+    "category": "ARC",
+    "term": "SLM",
+    "definition": "LLMより小規模なパラメータ数で構成される言語モデル。省リソースでの推論やエッジデバイスでの実行に適する。",
+    "status": "published"
+  },
+  {
+    "id": "ARC-03",
+    "category": "ARC",
+    "term": "VLM",
+    "definition": "画像とテキストの両方を理解・生成できるマルチモーダルモデル。画像キャプション生成や視覚的質問応答に用いられる。",
+    "status": "published"
+  },
+  {
+    "id": "ARC-04",
+    "category": "ARC",
+    "term": "MoE",
+    "definition": "複数の専門化された小規模ネットワーク(エキスパート)を持ち、入力ごとに一部のみを活性化させるアーキテクチャ。計算効率を保ちながらモデル容量を拡大できる。",
+    "status": "published"
+  },
+  {
+    "id": "ARC-05",
+    "category": "ARC",
+    "term": "Context Window",
+    "definition": "モデルが一度に処理できるトークン数の上限。長いほど多くの文脈情報を保持しながら応答を生成できる。",
+    "status": "published"
+  },
+  {
+    "id": "ARC-06",
+    "category": "ARC",
+    "term": "Reasoning Model",
+    "definition": "回答前に段階的な思考過程(推論)を行うよう訓練されたモデル。複雑な数学問題やコーディングタスクでの精度向上を狙う。",
+    "status": "published"
+  },
+  {
+    "id": "RAG-01",
+    "category": "RAG",
+    "term": "RAG",
+    "definition": "外部知識ベースから関連情報を検索し、それを踏まえて回答を生成する手法。モデルの知識を最新かつ正確に保つ。",
+    "status": "published"
+  },
+  {
+    "id": "RAG-02",
+    "category": "RAG",
+    "term": "Chunking",
+    "definition": "長い文書を検索・埋め込みに適したサイズの断片(チャンク)に分割する前処理工程。",
+    "status": "published"
+  },
+  {
+    "id": "RAG-03",
+    "category": "RAG",
+    "term": "Vector Database",
+    "definition": "テキストなどをベクトル化(埋め込み)して格納し、類似度検索を高速に行うためのデータベース。",
+    "status": "published"
+  },
+  {
+    "id": "RAG-04",
+    "category": "RAG",
+    "term": "Semantic Search",
+    "definition": "キーワードの一致ではなく、意味的な近さに基づいて情報を検索する手法。",
+    "status": "published"
+  },
+  {
+    "id": "RAG-05",
+    "category": "RAG",
+    "term": "GraphRAG",
+    "definition": "知識をグラフ構造(エンティティと関係)として表現し、検索・推論に活用するRAGの発展形。",
+    "status": "published"
+  },
+  {
+    "id": "AGT-01",
+    "category": "AGT",
+    "term": "AI Agent",
+    "definition": "目標達成のために自律的に計画・判断・行動(ツール利用を含む)を行うAIシステム。",
+    "status": "published"
+  },
+  {
+    "id": "AGT-02",
+    "category": "AGT",
+    "term": "Multi-Agent System",
+    "definition": "複数のAIエージェントが協調・分業してタスクを遂行する仕組み。",
+    "status": "published"
+  },
+  {
+    "id": "AGT-03",
+    "category": "AGT",
+    "term": "Function Calling / Tool Use",
+    "definition": "モデルが外部の関数やAPI・ツールを呼び出して情報取得や操作を行う能力。",
+    "status": "published"
+  },
+  {
+    "id": "AGT-04",
+    "category": "AGT",
+    "term": "MCP",
+    "definition": "モデルと外部データソース・ツールを標準化された方法で接続するためのプロトコル(Model Context Protocol)。",
+    "status": "published"
+  },
+  {
+    "id": "PMT-01",
+    "category": "PMT",
+    "term": "System Prompt",
+    "definition": "モデルの振る舞いや役割をあらかじめ規定する、対話の冒頭に与える指示文。",
+    "status": "published"
+  },
+  {
+    "id": "PMT-02",
+    "category": "PMT",
+    "term": "CoT",
+    "definition": "回答に至るまでの思考過程を段階的に言語化させることで、推論精度を高めるプロンプト技法(Chain of Thought)。",
+    "status": "published"
+  },
+  {
+    "id": "PMT-03",
+    "category": "PMT",
+    "term": "In-Context Learning",
+    "definition": "追加の学習(パラメータ更新)なしに、プロンプト内の例示だけから新しいタスクのパターンを学習する能力。",
+    "status": "published"
+  },
+  {
+    "id": "PMT-04",
+    "category": "PMT",
+    "term": "Fine-Tuning",
+    "definition": "事前学習済みモデルを特定タスクやドメインのデータで追加学習し、性能を調整する手法。",
+    "status": "published"
+  },
+  {
+    "id": "PMT-05",
+    "category": "PMT",
+    "term": "RLHF",
+    "definition": "人間の評価・フィードバックを報酬信号として、モデルの応答を望ましい方向に強化学習する手法。",
+    "status": "published"
+  },
+  {
+    "id": "GOV-01",
+    "category": "GOV",
+    "term": "Hallucination",
+    "definition": "モデルが事実に基づかない、もっともらしい誤った情報を生成してしまう現象。",
+    "status": "published"
+  },
+  {
+    "id": "GOV-02",
+    "category": "GOV",
+    "term": "Alignment",
+    "definition": "モデルの振る舞いを人間の意図や価値観、安全性の基準に一致させる取り組み。",
+    "status": "published"
+  },
+  {
+    "id": "GOV-03",
+    "category": "GOV",
+    "term": "Prompt Injection",
+    "definition": "悪意ある入力によってモデルの本来の指示や制御を乗っ取ろうとする攻撃手法。",
+    "status": "published"
+  },
+  {
+    "id": "GOV-04",
+    "category": "GOV",
+    "term": "Grounding",
+    "definition": "モデルの出力を検証可能な事実や外部情報源に基づかせること。",
+    "status": "published"
+  },
+  {
+    "id": "GOV-05",
+    "category": "GOV",
+    "term": "AI Governance",
+    "definition": "AIの開発・運用に関する組織的なルール・体制・監督の枠組み。",
+    "status": "published"
+  },
+  {
+    "id": "AGT-05",
+    "category": "AGT",
+    "term": "Vibe Coding",
+    "definition": "自然言語でAIに指示を与えてコードを生成させる開発スタイルで、コードを1行ずつ書く従来の手法に代わり、会話的なプロセスでアプリを構築する。2025年2月にAndrej Karpathyが提唱し、Collins Dictionary 2025年の言葉にも選ばれた。",
+    "source_url": "https://cloud.google.com/discover/what-is-vibe-coding",
+    "source_note": "Google Cloud",
+    "confidence": "high",
+    "status": "draft",
+    "collected_at": "2026-08-20T15:12:51.344Z"
+  },
+  {
+    "id": "ARC-07",
+    "category": "ARC",
+    "term": "Speculative Decoding",
+    "definition": "小規模なドラフトモデルが複数の候補トークンを先行生成し、大規模モデルが並列検証する推論高速化技術。出力品質を落とさずに2〜3倍のスループット向上が可能で、2025年に本番環境での標準手法となった。",
+    "source_url": "https://introl.com/blog/speculative-decoding-llm-inference-speedup-guide-2025",
+    "source_note": "Introl Blog",
+    "confidence": "high",
+    "status": "draft",
+    "collected_at": "2026-08-20T15:12:51.344Z"
+  }
 ]
