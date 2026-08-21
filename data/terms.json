@@ -217,5 +217,23 @@
     "confidence": "high",
     "status": "published",
     "collected_at": "2026-08-20T15:21:54.725Z"
+  },
+  {
+    "id": "ARC-09",
+    "category": "ARC",
+    "term": "test",
+    "definition": "test",
+    "createdAt": "2026-08-21T02:40:56.591Z",
+    "source": null,
+    "status": "draft"
+  },
+  {
+    "id": "ARC-10",
+    "category": "ARC",
+    "term": "test",
+    "definition": "test",
+    "createdAt": "2026-08-21T02:48:11.365Z",
+    "source": null,
+    "status": "draft"
   }
 ]
