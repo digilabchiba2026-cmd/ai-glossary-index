@@ -217,5 +217,38 @@
     "confidence": "high",
     "status": "published",
     "collected_at": "2026-08-20T15:21:54.725Z"
+  },
+  {
+    "id": "PMT-06",
+    "category": "PMT",
+    "term": "Context Engineering",
+    "definition": "LLMやAIエージェントが与えられたタスクを確実に実行できるよう、プロンプトにとどまらず、メモリ・外部知識・ツール・状態など、コンテキストウィンドウに渡す情報全体を設計・最適化する実践的規律。2025年6月にShopify CEOのTobi Lütkeが提唱し、Gartnerも「プロンプトエンジニアリングの後継」と位置づけている。",
+    "source_url": "https://www.gartner.com/en/articles/context-engineering",
+    "source_note": "Gartner",
+    "confidence": "high",
+    "status": "draft",
+    "collected_at": "2026-08-24T03:33:56.881Z"
+  },
+  {
+    "id": "ARC-10",
+    "category": "ARC",
+    "term": "World Model",
+    "definition": "テキストの次トークン予測にとどまらず、物理法則・空間的関係・因果関係を含む現実世界のダイナミクスをマルチモーダルデータ（映像・音声・センサー等）から学習するAIシステム。NVIDIA Cosmos、Google Genie 3、Meta V-JEPA 2など2025年以降に主要プロジェクトが相次いでリリースされ、LLMの次世代基盤として注目される。",
+    "source_url": "https://ideatomvp.ai/en/blog/world-models-ai-next-frontier-2026",
+    "source_note": "Idea to MVP",
+    "confidence": "high",
+    "status": "draft",
+    "collected_at": "2026-08-24T03:33:56.881Z"
+  },
+  {
+    "id": "ARC-11",
+    "category": "ARC",
+    "term": "Prompt Caching",
+    "definition": "LLM APIにおいて、システムプロンプトや長い共通コンテキストのKVキャッシュをサーバー側に保存・再利用することで、推論コストと初回応答レイテンシを削減する技術。OpenAI・Anthropic・Googleが2024〜2025年にかけて主要APIに実装し、エージェントワークロードでのAPI費用を最大80%削減できることが実証されている。",
+    "source_url": "https://arxiv.org/abs/2601.06007",
+    "source_note": "arXiv / Don't Break the Cache論文",
+    "confidence": "high",
+    "status": "draft",
+    "collected_at": "2026-08-24T03:33:56.881Z"
   }
 ]
