@@ -250,5 +250,16 @@
     "confidence": "high",
     "status": "published",
     "collected_at": "2026-08-24T03:33:56.881Z"
+  },
+  {
+    "id": "AGT-06",
+    "category": "AGT",
+    "term": "Self-Evolving Agent",
+    "definition": "デプロイ後も対話データや環境からのフィードバックを基に、自身のパラメータ・記憶・ツール・アーキテクチャを自律的に更新し続けるAIエージェント。静的なファインチューニングを必要とせず、継続的な性能向上を目指す点で従来のエージェントと区別される。",
+    "source_url": "https://arxiv.org/pdf/2508.07407",
+    "source_note": "arXiv (A Comprehensive Survey of Self-Evolving AI Agents)",
+    "confidence": "high",
+    "status": "draft",
+    "collected_at": "2026-08-31T00:10:38.585Z"
   }
 ]
