@@ -272,5 +272,38 @@
     "confidence": "high",
     "status": "published",
     "collected_at": "2026-09-07T00:25:03.797Z"
+  },
+  {
+    "id": "AGT-08",
+    "category": "AGT",
+    "term": "Agentic Memory",
+    "definition": "AIエージェントがセッションをまたいで情報を保存・想起・活用するための外部記憶機構。LLM自体はステートレスであるため、過去の対話・ユーザー設定・タスク履歴を永続ストレージに保持し、次のプロンプトへ注入することで継続的な推論を可能にする。",
+    "source_url": "https://www.patronus.ai/ai-agent-development/agentic-memory",
+    "source_note": "Patronus AI",
+    "confidence": "high",
+    "status": "draft",
+    "collected_at": "2026-09-14T00:22:58.594Z"
+  },
+  {
+    "id": "GOV-06",
+    "category": "GOV",
+    "term": "Model Collapse",
+    "definition": "生成AIモデルが自身の出力データを繰り返し学習することで、出力の多様性や意味的整合性が世代を追って劣化していく現象。インターネット上にAI生成コンテンツが氾濫するにつれ、将来のモデル訓練データへの汚染リスクとして注目されている。",
+    "source_url": "https://arxiv.org/pdf/2511.05535",
+    "source_note": "arXiv",
+    "confidence": "high",
+    "status": "draft",
+    "collected_at": "2026-09-14T00:22:58.594Z"
+  },
+  {
+    "id": "GOV-07",
+    "category": "GOV",
+    "term": "AI Red Teaming",
+    "definition": "生成AIシステムの安全性・セキュリティ上の脆弱性をリリース前に能動的に探索するテスト手法。有害出力の誘発・ジェイルブレイク・プライバシー漏洩などを疑似的に試みることで、リスクを特定・緩和することを目的とする。",
+    "source_url": "https://www.weforum.org/stories/2025/06/red-teaming-and-safer-ai/",
+    "source_note": "World Economic Forum",
+    "confidence": "high",
+    "status": "draft",
+    "collected_at": "2026-09-14T00:22:58.594Z"
   }
 ]
