@@ -274,17 +274,6 @@
     "collected_at": "2026-09-07T00:25:03.797Z"
   },
   {
-    "id": "AGT-08",
-    "category": "AGT",
-    "term": "Agentic Memory",
-    "definition": "AIエージェントがセッションをまたいで情報を保存・想起・活用するための外部記憶機構。LLM自体はステートレスであるため、過去の対話・ユーザー設定・タスク履歴を永続ストレージに保持し、次のプロンプトへ注入することで継続的な推論を可能にする。",
-    "source_url": "https://www.patronus.ai/ai-agent-development/agentic-memory",
-    "source_note": "Patronus AI",
-    "confidence": "high",
-    "status": "draft",
-    "collected_at": "2026-09-14T00:22:58.594Z"
-  },
-  {
     "id": "GOV-06",
     "category": "GOV",
     "term": "Model Collapse",
