@@ -294,5 +294,16 @@
     "confidence": "high",
     "status": "published",
     "collected_at": "2026-09-14T00:22:58.594Z"
+  },
+  {
+    "id": "ARC-12",
+    "category": "ARC",
+    "term": "Synthetic Data Generation",
+    "definition": "LLMを活用してモデルの学習・ファインチューニング・評価に用いる人工的かつリアルなデータセットを生成する手法。実データの不足・プライバシー制約・クラス不均衡を補う手段として急速に普及している。",
+    "source_url": "https://arxiv.org/abs/2503.14023",
+    "source_note": "arXiv（Synthetic Data Generation Using Large Language Models: Advances in Text and Code）",
+    "confidence": "high",
+    "status": "draft",
+    "collected_at": "2026-09-21T00:21:31.627Z"
   }
 ]
