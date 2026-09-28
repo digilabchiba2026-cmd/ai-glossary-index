@@ -305,5 +305,16 @@
     "confidence": "high",
     "status": "draft",
     "collected_at": "2026-09-21T00:21:31.627Z"
+  },
+  {
+    "id": "ARC-13",
+    "category": "ARC",
+    "term": "KV Cache Compression",
+    "definition": "LLMの推論時にSelf-Attentionのキー・バリューテンソルを圧縮・削減することで、長文脈処理におけるGPUメモリ使用量と計算コストを削減する技術。トークン選択的削減・量子化・アテンション圧縮など複数の手法が2025年に急速に研究されている。",
+    "source_url": "https://dl.acm.org/doi/10.1145/3778534.3778567",
+    "source_note": "ACM Digital Library",
+    "confidence": "high",
+    "status": "draft",
+    "collected_at": "2026-09-28T04:43:09.889Z"
   }
 ]
