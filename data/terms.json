@@ -316,5 +316,38 @@
     "confidence": "high",
     "status": "draft",
     "collected_at": "2026-09-28T04:43:09.889Z"
+  },
+  {
+    "id": "GOV-08",
+    "category": "GOV",
+    "term": "Generative Engine Optimization (GEO)",
+    "definition": "ChatGPT・Perplexity・Google AI Overviewsなど生成AI検索エンジンの回答内で自社コンテンツが引用・参照されるよう最適化する手法。従来のSEOがSERPへの掲載を目的とするのに対し、GEOはAIが生成する回答そのものへの組み込みを目指す。",
+    "source_url": "https://gofishdigital.com/blog/what-is-generative-engine-optimization/",
+    "source_note": "Go Fish Digital",
+    "confidence": "high",
+    "status": "draft",
+    "collected_at": "2026-10-05T04:57:51.154Z"
+  },
+  {
+    "id": "GOV-09",
+    "category": "GOV",
+    "term": "Opaque Recurrence",
+    "definition": "AIモデルが推論を人間可読な言語で逐次展開する代わりに、同一クエリを内部の数値表現ループで繰り返し処理する推論技術（別称：Recurrent Depth）。計算効率が高い一方、Chain-of-Thoughtのような可読な推論ログを残さないため、AIの安全監視を困難にするとして研究者から懸念が示されている。",
+    "source_url": "https://techcrunch.com/2026/09/02/openais-new-reasoning-technique-alarms-ai-safety-experts/",
+    "source_note": "TechCrunch",
+    "confidence": "high",
+    "status": "draft",
+    "collected_at": "2026-10-05T04:57:51.154Z"
+  },
+  {
+    "id": "ARC-14",
+    "category": "ARC",
+    "term": "Neuralese",
+    "definition": "AIモデルが人間の言語を介さず、内部の高次元ベクトル（活性化状態）を直接再帰入力として推論を行う概念的・実験的アーキテクチャ。CoconutやHuginnなどのプロジェクトで研究されており、トークン生成コストを削減しながら複数の推論経路を並列保持できる可能性があるが、推論過程が人間には全く読めないという透明性の問題を孕む。",
+    "source_url": "https://www.alignmentforum.org/posts/gpyqWzWYADWmLYLeX/how-ai-is-learning-to-think-in-secret",
+    "source_note": "AI Alignment Forum",
+    "confidence": "high",
+    "status": "draft",
+    "collected_at": "2026-10-05T04:57:51.154Z"
   }
 ]
