@@ -349,5 +349,16 @@
     "confidence": "high",
     "status": "draft",
     "collected_at": "2026-10-05T04:57:51.154Z"
+  },
+  {
+    "id": "RAG-06",
+    "category": "RAG",
+    "term": "HyDE (Hypothetical Document Embeddings)",
+    "definition": "RAGにおける検索精度を高めるため、ユーザーのクエリに対してLLMが「仮想的な理想回答ドキュメント」を生成し、そのembeddingを使って実際のドキュメントを検索する手法。クエリと文書間の意味的ギャップを埋めることで、ゼロショット設定でも高い検索関連性を実現する。",
+    "source_url": "https://www.emergentmind.com/topics/hypothetical-document-embeddings-hyde",
+    "source_note": "Emergent Mind",
+    "confidence": "high",
+    "status": "draft",
+    "collected_at": "2026-10-12T05:19:29.127Z"
   }
 ]
