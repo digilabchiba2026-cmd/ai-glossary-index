@@ -182,7 +182,7 @@
     "source_url": "https://cloud.google.com/discover/what-is-vibe-coding",
     "source_note": "Google Cloud",
     "confidence": "high",
-    "status": "draft",
+    "status": "published",
     "collected_at": "2026-08-20T15:12:51.344Z"
   },
   {
@@ -193,7 +193,7 @@
     "source_url": "https://introl.com/blog/speculative-decoding-llm-inference-speedup-guide-2025",
     "source_note": "Introl Blog",
     "confidence": "high",
-    "status": "draft",
+    "status": "published",
     "collected_at": "2026-08-20T15:12:51.344Z"
   },
   {
@@ -303,7 +303,7 @@
     "source_url": "https://arxiv.org/abs/2503.14023",
     "source_note": "arXiv（Synthetic Data Generation Using Large Language Models: Advances in Text and Code）",
     "confidence": "high",
-    "status": "draft",
+    "status": "published",
     "collected_at": "2026-09-21T00:21:31.627Z"
   },
   {
@@ -314,7 +314,7 @@
     "source_url": "https://dl.acm.org/doi/10.1145/3778534.3778567",
     "source_note": "ACM Digital Library",
     "confidence": "high",
-    "status": "draft",
+    "status": "published",
     "collected_at": "2026-09-28T04:43:09.889Z"
   },
   {
@@ -325,7 +325,7 @@
     "source_url": "https://gofishdigital.com/blog/what-is-generative-engine-optimization/",
     "source_note": "Go Fish Digital",
     "confidence": "high",
-    "status": "draft",
+    "status": "published",
     "collected_at": "2026-10-05T04:57:51.154Z"
   },
   {
@@ -336,7 +336,7 @@
     "source_url": "https://techcrunch.com/2026/09/02/openais-new-reasoning-technique-alarms-ai-safety-experts/",
     "source_note": "TechCrunch",
     "confidence": "high",
-    "status": "draft",
+    "status": "published",
     "collected_at": "2026-10-05T04:57:51.154Z"
   },
   {
@@ -347,7 +347,7 @@
     "source_url": "https://www.alignmentforum.org/posts/gpyqWzWYADWmLYLeX/how-ai-is-learning-to-think-in-secret",
     "source_note": "AI Alignment Forum",
     "confidence": "high",
-    "status": "draft",
+    "status": "published",
     "collected_at": "2026-10-05T04:57:51.154Z"
   },
   {
@@ -358,7 +358,7 @@
     "source_url": "https://www.emergentmind.com/topics/hypothetical-document-embeddings-hyde",
     "source_note": "Emergent Mind",
     "confidence": "high",
-    "status": "draft",
+    "status": "published",
     "collected_at": "2026-10-12T05:19:29.127Z"
   }
 ]
