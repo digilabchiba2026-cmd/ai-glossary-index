@@ -360,5 +360,38 @@
     "confidence": "high",
     "status": "published",
     "collected_at": "2026-10-12T05:19:29.127Z"
+  },
+  {
+    "id": "ARC-15",
+    "category": "ARC",
+    "term": "Context Rot",
+    "definition": "LLMのコンテキストウィンドウが容量上限に達していなくても、入力トークン数が増加するにつれて出力品質が段階的に低下する現象。2025年7月にChroma Researchが18種のフロンティアモデルを対象とした調査で命名・定量化した。",
+    "source_url": "https://ai.miraheze.org/wiki/Context_Rot",
+    "source_note": "Learn AI (Miraheze)",
+    "confidence": "high",
+    "status": "draft",
+    "collected_at": "2026-10-19T04:03:37.715Z"
+  },
+  {
+    "id": "GOV-10",
+    "category": "GOV",
+    "term": "Agent Washing",
+    "definition": "チャットボット・RPA・既存AIアシスタントなど実質的なエージェント機能を持たない製品を「エージェントAI」として再ブランディングするマーケティング慣行。Gartnerが2025年6月のレポートで命名し、数千社のベンダーのうち真にエージェントと呼べるのは約130社のみと推定した。",
+    "source_url": "https://www.gartner.com/en/newsroom/press-releases/2025-06-25-gartner-predicts-over-40-percent-of-agentic-ai-projects-will-be-canceled-by-end-of-2027",
+    "source_note": "Gartner Newsroom",
+    "confidence": "high",
+    "status": "draft",
+    "collected_at": "2026-10-19T04:03:37.715Z"
+  },
+  {
+    "id": "AGT-08",
+    "category": "AGT",
+    "term": "Agentic Browser",
+    "definition": "LLMベースのAIエージェントを内蔵し、自然言語による指示を受けてWebページのナビゲーション・フォーム入力・購買などの複数ステップのタスクをユーザーに代わって自律的に実行するWebブラウザ。2025年中頃からComet・ChatGPT Atlasなど複数の製品が登場した。",
+    "source_url": "https://snowplow.io/blog/what-is-an-agentic-browser",
+    "source_note": "Snowplow Blog",
+    "confidence": "high",
+    "status": "draft",
+    "collected_at": "2026-10-19T04:03:37.715Z"
   }
 ]
