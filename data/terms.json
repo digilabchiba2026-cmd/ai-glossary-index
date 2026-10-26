@@ -393,5 +393,16 @@
     "confidence": "high",
     "status": "published",
     "collected_at": "2026-10-19T04:03:37.715Z"
+  },
+  {
+    "id": "ARC-16",
+    "category": "ARC",
+    "term": "Activation Steering",
+    "definition": "LLMの内部活性化（hidden states）に意味的な方向ベクトルを直接加算することで、再学習なしにモデルの出力傾向（感情・安全性・真実性など）を推論時に制御する手法。メカニスティック解釈可能性研究と密接に関連する。",
+    "source_url": "https://www.emergentmind.com/topics/activation-steering-method",
+    "source_note": "Emergent Mind",
+    "confidence": "high",
+    "status": "draft",
+    "collected_at": "2026-10-26T04:07:17.400Z"
   }
 ]
