@@ -11,12 +11,19 @@
 // 必要なシークレット(`wrangler secret put <NAME>` で設定):
 //   GITHUB_TOKEN           対象リポジトリへの書き込み権限を持つトークン(Contents + Pull requests)
 //   SLACK_SIGNING_SECRET   Slack Appの Signing Secret(リクエスト検証用)
+//   SUBMIT_KEY             /submit-local-changes 用の合言葉(編集者だけが知る値。サイトのコードには書かない)
 //
 // 必要な環境変数(wrangler.toml の [vars] で設定):
 //   GITHUB_OWNER           リポジトリのオーナー名
 //   GITHUB_REPO            リポジトリ名
 
 const GITHUB_API = 'https://api.github.com';
+
+// 呼び出しを許可する閲覧サイトのオリジン
+const ALLOWED_ORIGIN = 'https://ai-glossary-index-site.pages.dev';
+
+// 1回の提出で受け付ける最大件数(大量投入の防止)
+const MAX_CHANGES = 50;
 
 export default {
   async fetch(request, env) {
@@ -42,9 +49,10 @@ export default {
 
 function withCors(response) {
   const headers = new Headers(response.headers);
-  headers.set('Access-Control-Allow-Origin', '*');
+  headers.set('Access-Control-Allow-Origin', ALLOWED_ORIGIN);
+  headers.set('Vary', 'Origin');
   headers.set('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  headers.set('Access-Control-Allow-Headers', 'Content-Type');
+  headers.set('Access-Control-Allow-Headers', 'Content-Type, X-Submit-Key');
   return new Response(response.body, { status: response.status, headers });
 }
 
@@ -176,6 +184,12 @@ function respondSlackUpdate(text) {
 // ---------- ローカル変更の書き戻し(サイト → PR自動作成) ----------
 
 async function handleSubmitLocalChanges(request, env) {
+  // 合言葉の確認(未設定のときは安全側に倒して全拒否)
+  const providedKey = request.headers.get('X-Submit-Key') || '';
+  if (!env.SUBMIT_KEY || !timingSafeEqual(providedKey, env.SUBMIT_KEY)) {
+    return jsonResponse({ error: 'unauthorized' }, 401);
+  }
+
   let payload;
   try {
     payload = await request.json();
@@ -189,6 +203,10 @@ async function handleSubmitLocalChanges(request, env) {
 
   if (added.length === 0 && edited.length === 0 && deletedIds.length === 0) {
     return jsonResponse({ error: '変更がありません' }, 400);
+  }
+  if (!Array.isArray(added) || !Array.isArray(edited) || !Array.isArray(deletedIds) ||
+      added.length + edited.length + deletedIds.length > MAX_CHANGES) {
+    return jsonResponse({ error: `変更は1回につき${MAX_CHANGES}件までです` }, 400);
   }
 
   try {
@@ -232,6 +250,7 @@ async function handleSubmitLocalChanges(request, env) {
 
     return jsonResponse({ pull_request_url: pr.html_url });
   } catch (err) {
-    return jsonResponse({ error: err.message }, 500);
+    console.error(err); // 詳細はCloudflareのログにのみ残し、外部には返さない
+    return jsonResponse({ error: '処理中にエラーが発生しました' }, 500);
   }
 }
