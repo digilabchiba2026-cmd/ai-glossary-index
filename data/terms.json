@@ -404,5 +404,14 @@
     "confidence": "high",
     "status": "published",
     "collected_at": "2026-10-26T04:07:17.400Z"
+  },
+  {
+    "id": "GOV-11",
+    "category": "GOV",
+    "term": "TEST",
+    "definition": "動作確認用のテストです。マージしないでください。",
+    "createdAt": "2026-10-27T15:15:40.229Z",
+    "source": null,
+    "status": "draft"
   }
 ]
