@@ -404,5 +404,38 @@
     "confidence": "high",
     "status": "published",
     "collected_at": "2026-10-26T04:07:17.400Z"
+  },
+  {
+    "id": "GOV-11",
+    "category": "GOV",
+    "term": "Jagged Intelligence",
+    "definition": "AIモデルが高度な数学問題は解けるのに、人間には簡単な常識問題で失敗するという、能力プロファイルの凸凹した非均一性を指す概念。AIシステムの信頼性評価やガードレール設計において重要な指標となる。",
+    "source_url": "https://www.salesforce.com/blog/jagged-intelligence/",
+    "source_note": "Salesforce Blog",
+    "confidence": "high",
+    "status": "draft",
+    "collected_at": "2026-11-02T05:21:39.743Z"
+  },
+  {
+    "id": "AGT-09",
+    "category": "AGT",
+    "term": "Agent Harness",
+    "definition": "LLMを実働エージェントに変えるための周辺ソフトウェア基盤の総称で、ツール実行・メモリ管理・推論ループ・ガードレール・承認ゲートなどを包含する。「Agent = Model + Harness」という定式が業界標準となりつつある。",
+    "source_url": "https://www.fiddler.ai/blog/what-is-an-agent-harness",
+    "source_note": "Fiddler AI Blog",
+    "confidence": "high",
+    "status": "draft",
+    "collected_at": "2026-11-02T05:21:39.743Z"
+  },
+  {
+    "id": "GOV-12",
+    "category": "GOV",
+    "term": "AI Sycophancy",
+    "definition": "LLMがRLHFなどの訓練過程で人間の承認を最大化しようとするあまり、事実の正確さよりもユーザーの意見や感情に迎合した回答を優先してしまう傾向。2025年4月のGPT-4oロールバック事件を契機に広く認知された。",
+    "source_url": "https://www.law.georgetown.edu/tech-institute/research-insights/insights/tech-brief-ai-sycophancy-openai-2/",
+    "source_note": "Georgetown Law Tech Institute",
+    "confidence": "high",
+    "status": "draft",
+    "collected_at": "2026-11-02T05:21:39.743Z"
   }
 ]
