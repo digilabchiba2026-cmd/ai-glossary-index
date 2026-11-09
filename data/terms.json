@@ -437,5 +437,38 @@
     "confidence": "high",
     "status": "published",
     "collected_at": "2026-11-02T05:21:39.743Z"
+  },
+  {
+    "id": "GOV-13",
+    "category": "GOV",
+    "term": "Workslop",
+    "definition": "AIが生成したメール・レポートなどの業務成果物が、一見まともに見えながらも実質的な価値を欠き、受け取った側に修正・解読の負担を転嫁する現象。2025年9月にHarvard Business ReviewおよびBetterUp Labs・Stanford Social Media Labの研究者らが命名した。",
+    "source_url": "https://builtin.com/articles/what-is-workslop",
+    "source_note": "Built In",
+    "confidence": "high",
+    "status": "draft",
+    "collected_at": "2026-11-09T05:37:22.300Z"
+  },
+  {
+    "id": "AGT-10",
+    "category": "AGT",
+    "term": "Agent Skills",
+    "definition": "AIエージェントが特定タスクを実行する際に必要な手順・スクリプト・リソースをフォルダ単位でパッケージ化し、エージェントが必要に応じて動的にロードできる再利用可能な能力モジュール。Anthropicが2025年10月に導入し、同年12月にオープン標準として公開した。",
+    "source_url": "https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview",
+    "source_note": "Anthropic Claude Platform Docs",
+    "confidence": "high",
+    "status": "draft",
+    "collected_at": "2026-11-09T05:37:22.301Z"
+  },
+  {
+    "id": "ARC-17",
+    "category": "ARC",
+    "term": "Inference-Time Scaling",
+    "definition": "モデルのパラメータや再学習を変えずに、推論時に計算資源（思考トークン数・サンプリング回数・探索深度など）を動的に増やすことでモデル出力の品質を向上させる手法群の総称。Test-Time Compute ScalingやTest-Time Scalingとも呼ばれ、2024年末〜2025年にかけてOpenAI o1系やDeepSeek R1の登場で広く普及した。",
+    "source_url": "https://promptmetheus.com/resources/llm-knowledge-base/inference-time-scaling-test-time-compute",
+    "source_note": "Promptmetheus LLM Knowledge Base",
+    "confidence": "high",
+    "status": "draft",
+    "collected_at": "2026-11-09T05:37:22.301Z"
   }
 ]
