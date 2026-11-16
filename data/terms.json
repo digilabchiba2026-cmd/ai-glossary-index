@@ -470,5 +470,27 @@
     "confidence": "high",
     "status": "published",
     "collected_at": "2026-11-09T05:37:22.301Z"
+  },
+  {
+    "id": "AGT-11",
+    "category": "AGT",
+    "term": "Context Compaction",
+    "definition": "長時間稼働するAIエージェントのセッションがコンテキストウィンドウの上限に達した際、過去の会話履歴やツール実行結果を短い要約に自動圧縮・置換し、エージェントが作業を継続できるようにする技術。2025年後半にAnthropicのClaude等で実装が進み、長期タスクの標準的な文脈管理手法となった。",
+    "source_url": "https://decagon.ai/glossary/what-is-context-compaction",
+    "source_note": "Decagon AI Glossary",
+    "confidence": "high",
+    "status": "draft",
+    "collected_at": "2026-11-16T05:45:15.544Z"
+  },
+  {
+    "id": "AGT-12",
+    "category": "AGT",
+    "term": "Agent Memory Distillation",
+    "definition": "大規模な教師エージェントが蓄積した経験・記憶（ワークフロー・サブタスク・ツール利用等の階層的知識）を、追加学習なしに小型の生徒エージェントへ転送するフレームワーク。2025〜2026年にかけてSLMベースのエージェントの性能向上手法として研究が活発化した。",
+    "source_url": "https://arxiv.org/html/2608.07169",
+    "source_note": "arXiv (2608.07169)",
+    "confidence": "high",
+    "status": "draft",
+    "collected_at": "2026-11-16T05:45:15.544Z"
   }
 ]
