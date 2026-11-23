@@ -492,5 +492,38 @@
     "confidence": "high",
     "status": "published",
     "collected_at": "2026-11-16T05:45:15.544Z"
+  },
+  {
+    "id": "ARC-18",
+    "category": "ARC",
+    "term": "RLVR (Reinforcement Learning from Verifiable Rewards)",
+    "definition": "数学やコード生成など正解を客観的に検証できるタスクに対し、ルールベースの検証器が出力する決定論的な報酬でLLMを強化学習するポスト学習パラダイム。RLHFのような人間のフィードバックや学習済み報酬モデルを不要とし、DeepSeek-R1などの推論モデルの性能向上を支えた技術として2025年に広まった。",
+    "source_url": "https://www.emergentmind.com/topics/reinforcement-learning-from-verifiable-rewards-rlvr",
+    "source_note": "Emergent Mind",
+    "confidence": "high",
+    "status": "draft",
+    "collected_at": "2026-11-23T06:49:56.920Z"
+  },
+  {
+    "id": "GOV-14",
+    "category": "GOV",
+    "term": "Lethal Trifecta",
+    "definition": "AIエージェントが「プライベートデータへのアクセス」「信頼できない外部コンテンツの処理」「外部への通信手段」の三つを同時に持つ危険な構成を指すセキュリティ概念。2025年6月にSimon Willisonが命名し、この組み合わせがプロンプトインジェクションによるデータ流出を現実的脅威にすると警告した。",
+    "source_url": "https://arcjet.com/learn/lethal-trifecta",
+    "source_note": "Arcjet",
+    "confidence": "high",
+    "status": "draft",
+    "collected_at": "2026-11-23T06:49:56.920Z"
+  },
+  {
+    "id": "ARC-19",
+    "category": "ARC",
+    "term": "VLA (Vision-Language-Action Model)",
+    "definition": "カメラ映像と自然言語指示を入力とし、ロボットの物理的動作コマンドを直接出力するニューラルネットワーク。VLMに行動出力層を加えた統合アーキテクチャで、汎用ロボットやPhysical AIの中核技術として2025年に急速に研究が進んだ。",
+    "source_url": "https://encord.com/glossary/vision-language-action-model-definition/",
+    "source_note": "Encord",
+    "confidence": "high",
+    "status": "draft",
+    "collected_at": "2026-11-23T06:49:56.920Z"
   }
 ]
