@@ -12,6 +12,7 @@
 //   GITHUB_TOKEN           対象リポジトリへの書き込み権限を持つトークン(Contents + Pull requests)
 //   SLACK_SIGNING_SECRET   Slack Appの Signing Secret(リクエスト検証用)
 //   SUBMIT_KEY             /submit-local-changes 用の合言葉(編集者だけが知る値。サイトのコードには書かない)
+//   SLACK_BOT_TOKEN        (任意)Slackの返信URLが使えないときの代替手段(メッセージの更新/投稿)に使う
 //
 // 必要な環境変数(wrangler.toml の [vars] で設定):
 //   GITHUB_OWNER           リポジトリのオーナー名
@@ -26,7 +27,7 @@ const ALLOWED_ORIGIN = 'https://ai-glossary-index-site.pages.dev';
 const MAX_CHANGES = 50;
 
 export default {
-  async fetch(request, env) {
+  async fetch(request, env, ctx) {
     const url = new URL(request.url);
 
     if (request.method === 'OPTIONS') {
@@ -34,7 +35,7 @@ export default {
     }
 
     if (request.method === 'POST' && url.pathname === '/slack/interactions') {
-      return handleSlackInteraction(request, env);
+      return handleSlackInteraction(request, env, ctx);
     }
 
     if (request.method === 'POST' && url.pathname === '/submit-local-changes') {
@@ -129,56 +130,130 @@ async function putFile(env, path, branch, jsonContent, sha, message) {
     headers: githubHeaders(env),
     body: JSON.stringify(body),
   });
-  if (!res.ok) throw new Error(`GitHub更新エラー: ${res.status} ${await res.text()}`);
+  if (!res.ok) {
+    const err = new Error(`GitHub更新エラー: ${res.status} ${await res.text()}`);
+    err.status = res.status;
+    throw err;
+  }
   return res.json();
 }
 
 // ---------- Slackボタン(承認/却下)の処理 ----------
 
-async function handleSlackInteraction(request, env) {
+async function handleSlackInteraction(request, env, ctx) {
   const rawBody = await request.text();
   const valid = await verifySlackSignature(request, env, rawBody);
-  if (!valid) return new Response('invalid signature', { status: 401 });
+  if (!valid) {
+    console.log('[slack] invalid signature (SLACK_SIGNING_SECRET が違う可能性)');
+    return new Response('invalid signature', { status: 401 });
+  }
 
   const params = new URLSearchParams(rawBody);
   const payload = JSON.parse(params.get('payload'));
   const action = payload.actions && payload.actions[0];
   if (!action) return new Response('', { status: 200 });
 
-  const [decision, termId] = action.value.split(':');
-  const userName = payload.user ? payload.user.username : 'unknown';
-
-  try {
-    const { content: terms, sha } = await getFile(env, 'data/terms.json', 'main');
-    const idx = terms.findIndex((t) => t.id === termId);
-
-    if (idx === -1) {
-      return respondSlackUpdate(`:warning: ${termId} は既に処理済み、または見つかりませんでした。`);
-    }
-
-    let resultText;
-    if (decision === 'approve') {
-      terms[idx].status = 'published';
-      await putFile(env, 'data/terms.json', 'main', terms, sha, `Slack承認: ${termId} を公開(by @${userName})`);
-      resultText = `:white_check_mark: *${termId} ${terms[idx].term}* を公開しました(承認: @${userName})`;
-    } else if (decision === 'reject') {
-      const term = terms[idx].term;
-      terms.splice(idx, 1);
-      await putFile(env, 'data/terms.json', 'main', terms, sha, `Slack却下: ${termId} を削除(by @${userName})`);
-      resultText = `:x: *${termId} ${term}* を却下しました(却下: @${userName})`;
-    } else {
-      return new Response('', { status: 200 });
-    }
-
-    return respondSlackUpdate(resultText);
-  } catch (err) {
-    return respondSlackUpdate(`:warning: 処理中にエラーが発生しました: ${err.message}`);
-  }
+  // Slackへは3秒以内に200 OKを返す必要があるため、実際の処理は非同期(waitUntil)で行い、
+  // 結果はpayload.response_urlへ改めて送信して元のメッセージを更新する。
+  ctx.waitUntil(processApproval(payload, action, env));
+  return new Response('', { status: 200 });
 }
 
-function respondSlackUpdate(text) {
-  // 元のメッセージをこの内容で置き換える(ボタンは消える)
-  return jsonResponse({ replace_original: true, text });
+async function processApproval(payload, action, env) {
+  const [decision, termId] = action.value.split(':');
+  const userName = payload.user ? payload.user.username : 'unknown';
+  const responseUrl = payload.response_url;
+
+  let resultText;
+  let isError = false;
+  try {
+    // 複数のボタンを続けて押すと、同時に data/terms.json を更新しようとして
+    // GitHubが「古いsha」を理由に拒否する(409/422)。その場合は最新を取り直して数回やり直す。
+    const MAX_ATTEMPTS = 5;
+    for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
+      const { content: terms, sha } = await getFile(env, 'data/terms.json', 'main');
+      const idx = terms.findIndex((t) => t.id === termId);
+
+      if (idx === -1) {
+        resultText = `:warning: ${termId} は既に処理済み、または見つかりませんでした。`;
+        isError = true;
+        break;
+      }
+      if (decision !== 'approve' && decision !== 'reject') return;
+
+      try {
+        if (decision === 'approve') {
+          terms[idx].status = 'published';
+          await putFile(env, 'data/terms.json', 'main', terms, sha, `Slack承認: ${termId} を公開(by @${userName})`);
+          resultText = `:white_check_mark: *${termId} ${terms[idx].term}* を公開しました(承認: @${userName})`;
+        } else {
+          const term = terms[idx].term;
+          terms.splice(idx, 1);
+          await putFile(env, 'data/terms.json', 'main', terms, sha, `Slack却下: ${termId} を削除(by @${userName})`);
+          resultText = `:x: *${termId} ${term}* を却下しました(却下: @${userName})`;
+        }
+        break;
+      } catch (putErr) {
+        const conflict = putErr.status === 409 || putErr.status === 422;
+        if (!conflict || attempt === MAX_ATTEMPTS) throw putErr;
+        // 他のボタン処理と衝突した。少し待って最新を取り直す(待ち時間をずらして再衝突を避ける)
+        await new Promise((r) => setTimeout(r, 300 + Math.random() * 700 * attempt));
+      }
+    }
+  } catch (err) {
+    resultText = `:warning: 処理中にエラーが発生しました: ${err.message}`;
+    isError = true;
+  }
+
+  console.log(`[approval] ${decision}:${termId} by @${userName} -> ${isError ? 'ERROR' : 'OK'} ${resultText}`);
+  await notifySlack(payload, env, resultText, isError);
+}
+
+// 結果をSlackに知らせる。
+// 成功時: 元のメッセージ(ボタン付き)を結果で置き換える。
+// エラー時: 元のメッセージとボタンは残し、エラーは別メッセージとして投稿する(再試行できるように)。
+// response_url は発行から30分(最大5回)しか使えないため、失敗したら Bot Token での更新/投稿に切り替える。
+async function notifySlack(payload, env, resultText, isError) {
+  const errorText = `${resultText}\n(上の承認/却下ボタンは残してあります。原因を直した後、もう一度押してください)`;
+
+  if (payload.response_url) {
+    try {
+      const body = isError
+        ? { replace_original: false, response_type: 'in_channel', text: errorText }
+        : { replace_original: true, text: resultText };
+      const res = await fetch(payload.response_url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      });
+      if (res.ok) return;
+      console.log(`[notify] response_url failed: ${res.status} ${await res.text()}`);
+    } catch (e) {
+      console.log(`[notify] response_url exception: ${e.message}`);
+    }
+  }
+
+  // フォールバック(任意): wrangler secret put SLACK_BOT_TOKEN を設定していれば使う
+  if (!env.SLACK_BOT_TOKEN || !payload.channel || !payload.message) {
+    console.log('[notify] no fallback available (SLACK_BOT_TOKEN not set)');
+    return;
+  }
+  const channel = payload.channel.id;
+  const ts = payload.message.ts;
+  try {
+    const api = isError ? 'chat.postMessage' : 'chat.update';
+    const body = isError
+      ? { channel, thread_ts: ts, text: errorText }
+      : { channel, ts, text: resultText, blocks: [{ type: 'section', text: { type: 'mrkdwn', text: resultText } }] };
+    const res = await fetch(`https://slack.com/api/${api}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json; charset=utf-8', Authorization: `Bearer ${env.SLACK_BOT_TOKEN}` },
+      body: JSON.stringify(body),
+    });
+    console.log(`[notify] fallback ${api}: ${await res.text()}`);
+  } catch (e) {
+    console.log(`[notify] fallback exception: ${e.message}`);
+  }
 }
 
 // ---------- ローカル変更の書き戻し(サイト → PR自動作成) ----------
